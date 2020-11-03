@@ -1,0 +1,39 @@
+Query 1
+
+SELECT  al.ArtistId, ar.Name  AS artist_name, count(al.ArtistId) AS number_album 
+FROM Album  al
+JOIN Artist ar
+ON  al.ArtistId = ar.ArtistId
+GROUP BY artist_name
+ORDER By number_album  DESC;
+
+----------------------------------------------
+Query 2
+
+SELECT  g.Name AS music_type ,count(t.GenreId) AS number_song 
+FROM Track t
+JOIN Genre g 
+ON  t.GenreId = g.GenreId
+GROUP BY t.GenreId ;
+
+-----------------------------------------------
+Query 3
+
+SELECT FirstName, LastName , Country ,Count(Country) AS  num_Of_Custumer
+FROM 
+(
+SELECT e.FirstName , e.LastName , c.Country 
+FROM Customer c
+JOIN Employee e 
+ON  c.SupportRepId = e.EmployeeId
+) sub 
+WHERE FirstName = "Jane"
+GROUP BY Country;
+--------------------------------------------------
+Query 4
+
+SELECT m.Name, count(t.MediaTypeId) AS media_prefered
+FROM MediaType m
+JOIN Track t
+ON t.MediaTypeId = m.MediaTypeId
+GROUP BY t.MediaTypeId;
